@@ -20,34 +20,33 @@ type JokeResponse  = {
 
 
 export async function getJoke(category = 'Any') : Promise<Joke> {
-	return new Promise((resolve, reject) => {
-		axios.get<JokeResponse>('https://v2.jokeapi.dev/joke/' + category)
-			.then((response) => {
-				const result = response.data
-				if(result.error) {
-					reject(new Error(result.message, result.additionalInfo))
-				}
+	const promise = axios.get<JokeResponse>('https://v2.jokeapi.dev/joke/' + category)
 
-				switch(result.type) {
-				case 'single':
-					resolve(new Joke(result.joke))
-					break
-				case 'twopart':
-					resolve(new Joke(result.setup, result.delivery))
-					break
-				default:
-					reject(new Error(`Unkwnown joke type: ${result.type}`, 
-						'Looks like the program and its developer are outdated!'))
-					break
-				}
-			}).catch((error) => {
-				reject(new Error('Unable to get a joke from the server. Check internet connection', 
-					error.message))
-			})
+	promise.catch((error) => {
+		throw new Error('Unable to get a joke from the server. Check internet connection', 
+			error.message)
+	})
+
+	return promise.then((response) => {
+		const result = response.data
+		if(result.error) {
+			throw new Error(result.message, result.additionalInfo)
+		}
+
+		switch(result.type) {
+		case 'single':
+			return new Joke(result.joke)
+		case 'twopart':
+			return new Joke(result.setup, result.delivery)
+		default:
+			throw new Error(`Unkwnown joke type: ${result.type}`, 
+				'Looks like the program and its developer are outdated!')
+		}
 	})
 }
+		
 
-export async function getJokeAsync(category = 'Any') : Promise<Joke> {
+export async function getJokeAwait(category = 'Any') : Promise<Joke> {
 	const response  = await axios.get<JokeResponse>('https://v2.jokeapi.dev/joke/' + category)
 		.catch((error) => {
 			throw new Error('Unable to get a joke from the server. Check internet connection', 

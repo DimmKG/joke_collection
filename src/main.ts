@@ -1,4 +1,4 @@
-import { Error, getJokeAsync, getJoke } from './app'
+import { Error, getJokeAwait, getJoke } from './app'
 
 const promise = getJoke('Programming,Dark').then((joke) => {
 	console.log(joke.firstLine)
