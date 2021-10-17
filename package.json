@@ -4,7 +4,7 @@
   "scripts": {
     "build": "tsc --build",
     "start": "npx ts-node src/main.ts",
-    "start:prod": "node dist/main.js"
+    "benchmark": "npx ts-node src/benchmark.ts"
   },
   "author": "",
   "license": "ISC",
