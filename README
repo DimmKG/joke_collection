@@ -1,12 +1,15 @@
 # Joke collection
+
 Node.JS application, that gets a joke from [Joke API](https://v2.jokeapi.dev/joke/Any) and prints it to the console
 
 ## Build application
+
 ```bash
 $ npm run build
 ```
 
 ## Usage
+
 ```bash
 $ npm start -- --help
 Usage: joke_collection [options]
@@ -20,6 +23,7 @@ Options:
 ```
 
 ## Run benchmark
+
 ```bash
 $ npm run benchmark
 ```
