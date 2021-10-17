@@ -5,7 +5,7 @@ import { Error, getJoke } from './lib'
 const program = new Command()
 program.version('0.5')
 program.description('Get a random joke from Joke API "https://v2.jokeapi.dev/"')
-program.option('-c, --category [categories...]', 'specify category' )
+program.option('-c, --category [categories...]', 'specify categories. Case-insensitive' )
 program.parse(process.argv)
 
 const options = program.opts()
