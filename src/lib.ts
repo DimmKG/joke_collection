@@ -1,11 +1,21 @@
 import axios from 'axios'
 
-export class Error {
-	constructor(readonly message: string, readonly additionalInfo?: string) {}
-}
-
+/**
+   * Class with a joke string
+   * @param firstLine - Joke string if it is a single line, or setup if it is a two line.
+   * @param secondLine - Delivery string for two line jokes. 
+   */
 export class Joke {
 	constructor(readonly firstLine: string, readonly secondLine?: string) {}
+}
+
+/**
+ * Class with an error information
+ * @param message - Main error message.
+ * @param additionalInfo - Additional message, that describes reason of the error.
+ */
+export class Error {
+	constructor(readonly message: string, readonly additionalInfo?: string) {}
 }
 
 type JokeResponse  = {
@@ -18,7 +28,14 @@ type JokeResponse  = {
 	delivery: string
 }
 
-
+/**
+   * Gets a joke from Joke API
+   *
+   * @param category - Category string. If there are more than one, write them with comma. Case-insensitive
+   * @returns The promise with `Joke` object
+   * @throws `Error` object
+   *
+   */
 export async function getJoke(category = 'Any') : Promise<Joke> {
 	const promise = axios.get<JokeResponse>('https://v2.jokeapi.dev/joke/' + category)
 
@@ -45,7 +62,14 @@ export async function getJoke(category = 'Any') : Promise<Joke> {
 	})
 }
 		
-
+/**
+   * Gets a joke from Joke API (using async/await)
+   *
+   * @param category - Category string. If there are more than one, write them with comma. Case-insensitive
+   * @returns The promise with `Joke` object
+   * @throws `Error` object
+   *
+   */
 export async function getJokeAwait(category = 'Any') : Promise<Joke> {
 	const response  = await axios.get<JokeResponse>('https://v2.jokeapi.dev/joke/' + category)
 		.catch((error) => {

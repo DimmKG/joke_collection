@@ -1,4 +1,4 @@
-import { getJoke, getJokeAwait } from './app'
+import { getJoke, getJokeAwait } from './lib'
 
 const N = 20
 
