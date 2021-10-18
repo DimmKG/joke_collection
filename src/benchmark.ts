@@ -1,3 +1,5 @@
+import { performance } from 'perf_hooks'
+
 import { getJoke, getJokeAwait } from './lib'
 
 const N = 20
