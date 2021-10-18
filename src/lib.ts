@@ -1,32 +1,8 @@
 import axios from 'axios'
 
-/**
-   * Class with a joke string
-   * @param firstLine - Joke string if it is a single line, or setup if it is a two line.
-   * @param secondLine - Delivery string for two line jokes. 
-   */
-export class Joke {
-	constructor(readonly firstLine: string, readonly secondLine?: string) {}
-}
-
-/**
- * Class with an error information
- * @param message - Main error message.
- * @param additionalInfo - Additional message, that describes reason of the error.
- */
-export class Error {
-	constructor(readonly message: string, readonly additionalInfo?: string) {}
-}
-
-type JokeResponse  = {
-	error: boolean
-	type: string
-	message: string
-	additionalInfo: string
-	joke: string
-	setup: string
-	delivery: string
-}
+import { Error } from './interfaces/error'
+import { Joke } from './interfaces/joke'
+import { JokeResponse } from './interfaces/joke_response'
 
 /**
    * Gets a joke from Joke API

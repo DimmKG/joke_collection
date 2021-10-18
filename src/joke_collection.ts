@@ -1,7 +1,8 @@
 import { Command } from 'commander'
 import { exit } from 'process'
 
-import { Error, getJoke } from './lib'
+import { getJoke } from './lib'
+import { Error } from './interfaces/error'
 
 const program = new Command()
 program.version('0.5')
