@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { Error } from './interfaces/error'
 import { Joke } from './interfaces/joke'
-import { JokeResponse } from './interfaces/joke_response'
+import { JokeResponse } from './interfaces/joke-response'
 
 /**
    * Gets a joke from Joke API
